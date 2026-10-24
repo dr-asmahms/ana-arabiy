@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ana Arabiy</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=Noto+Naskh+Arabic:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#f3f6f4; --surface:#ffffff; --ink:#15241f; --muted:#5b6b65;
+  --accent:#0f6b55; --accent-ink:#ffffff; --gold:#b98a2e; --line:#d9e3de;
+  --bot:#e7f1ed; --me:#0f6b55; --me-ink:#ffffff; --wa:#1f9d55; --warn:#fff4e0; --warn-ink:#6b4a0f;
+  --display:"Reem Kufi","Noto Naskh Arabic",system-ui,sans-serif;
+  --body:"Nunito Sans","Noto Naskh Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --arabic:"Noto Naskh Arabic","Traditional Arabic","Arial",serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#0e1714; --surface:#15211d; --ink:#e4eee9; --muted:#9db0a8;
+  --accent:#3fb592; --accent-ink:#06130f; --gold:#d8ae5a; --line:#26362f;
+  --bot:#1b2b25; --me:#2f8f73; --me-ink:#ffffff; --wa:#2fbf6a; --warn:#2c2414; --warn-ink:#f0d7a4; color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-right,0px)) 28px max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:16px}
+header{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mark{width:48px;height:48px;border-radius:12px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--arabic);font-size:26px;flex:none}
+.head-text{flex:1;min-width:200px}
+h1{margin:0;font-family:var(--display);font-size:1.45rem;font-weight:700;line-height:1.2}
+.sub{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+.wa-top{display:inline-flex;align-items:center;gap:6px;text-decoration:none;background:var(--wa);color:#fff;border-radius:999px;padding:8px 14px;font-weight:700;font-size:.85rem}
+.chat{background:var(--surface);border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column}
+.log{padding:16px;display:flex;flex-direction:column;gap:10px;height:60vh;min-height:320px;overflow-y:auto}
+.msg{max-width:88%;padding:10px 14px;border-radius:14px;unicode-bidi:plaintext;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg .who{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;opacity:.75;margin-bottom:2px}
+.bot{align-self:flex-start;background:var(--bot);border-bottom-left-radius:4px}
+.me{align-self:flex-end;background:var(--me);color:var(--me-ink);border-bottom-right-radius:4px}
+.ar{font-family:var(--arabic);font-size:1.15em}
+.quick{display:flex;flex-wrap:wrap;gap:6px;align-self:flex-start;max-width:100%}
+.chip{border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:999px;padding:6px 12px;font:600 .85rem var(--body);cursor:pointer;unicode-bidi:plaintext}
+.chip:hover{background:var(--bot)}
+.handoff{align-self:flex-start;max-width:88%;background:var(--warn);color:var(--warn-ink);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.handoff strong{font-size:.95rem}
+.handoff .num{font-variant-numeric:tabular-nums;font-weight:700;user-select:all}
+.handoff a{align-self:flex-start;text-decoration:none;background:var(--wa);color:#fff;border-radius:10px;padding:8px 14px;font-weight:700}
+.composer{border-top:1px solid var(--line);padding:10px;display:flex;gap:8px;align-items:flex-end}
+textarea{flex:1;min-width:0;resize:none;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;padding:10px 12px;max-height:120px;unicode-bidi:plaintext}
+.btn{border:0;border-radius:12px;padding:10px 16px;font:700 .9rem var(--body);cursor:pointer;background:var(--accent);color:var(--accent-ink)}
+.ghost{background:transparent;color:var(--accent);border:1px solid var(--line)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.status{font-size:.82rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+summary{cursor:pointer;font-weight:700}
+.tbl{overflow-x:auto;margin-top:10px}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--bot)}
+td:first-child{font-weight:600;width:32%;color:var(--muted)}
+button:focus-visible,a:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="mark" aria-hidden="true">ع</div>
+    <div class="head-text">
+      <h1>Ana Arabiy <span class="ar" lang="ar" style="color:var(--gold)">أَنَا عَرَبِيّ</span></h1>
+      <p class="sub">Study Buddy Bot untuk mufradat dan nahu. Bimbing, bukan buatkan kerja.</p>
+    </div>
+    <a class="wa-top" id="waTop" target="_blank" rel="noopener">WhatsApp Pensyarah</a>
+  </header>
+
+  <section class="chat" aria-label="Perbualan">
+    <div class="log" id="log" aria-live="polite"></div>
+    <form class="composer" id="form">
+      <textarea id="inp" rows="1" placeholder="Taip soalan anda… contoh: Terangkan jumlah ismiyyah" aria-label="Mesej anda"></textarea>
+      <button class="btn" type="submit">Hantar</button>
+    </form>
+  </section>
+
+  <div class="row">
+    <span class="status">Bot berjalan terus dalam pelayar. Tiada data dihantar ke mana-mana.</span>
+    <button class="btn ghost" id="reset" type="button">Mula semula</button>
+  </div>
+
+  <details>
+    <summary>Reka bentuk bot (intent, entity, fallback)</summary>
+    <div class="tbl"><table>
+      <tr><th>Medan</th><th>Jawapan</th></tr>
+      <tr><td>Nama Bot</td><td>Ana Arabiy</td></tr>
+      <tr><td>Tujuan Bot</td><td>Membantu pelajar memahami mufradat dan nahu bahasa Arab dengan menerangkan konsep, memberi contoh dan latihan berperingkat, bukan untuk menyiapkan tugasan atau peperiksaan bagi pihak mereka.</td></tr>
+      <tr><td>Soalan Pelajar 1</td><td>"Bolehkah awak terangkan [jumlah ismiyyah] dengan cara yang mudah?"</td></tr>
+      <tr><td>Soalan Pelajar 2</td><td>"Saya tak faham perubahan [fi'il madhi] ini, boleh awak pecahkan langkah demi langkah?"</td></tr>
+      <tr><td>Soalan Pelajar 3</td><td>"Bolehkah awak bagi saya soalan latihan untuk [mufradat keluarga]?"</td></tr>
+      <tr><td>Entity</td><td>Topik nahu / tema mufradat (jumlah ismiyyah, fi'il madhi, huruf jar, keluarga, sekolah)</td></tr>
+      <tr><td>Cara Bot Bertanya (jika tiada)</td><td>"Baik, topik nahu atau tema mufradat apa yang awak perlukan bantuan?"</td></tr>
+      <tr><td>Fallback</td><td>"Maaf, saya kurang faham. Boleh awak beritahu topik bahasa Arab yang mana, atau cuba tulis soalan dengan cara lain?" Selepas 2 percubaan gagal, hubungkan ke pensyarah melalui WhatsApp.</td></tr>
+      <tr><td>Hubungkan ke Manusia</td><td>Permintaan menulis karangan, menyiapkan tugasan atau menjawab kuiz/peperiksaan; soalan hukum agama (fatwa); isu peribadi/emosi. Bot menolak secara sopan dan beri pautan WhatsApp pensyarah (+60 13-363 5378).</td></tr>
+    </table></div>
+  </details>
+</div>
+
+<script>
+/* ---------- Tetapan ---------- */
+const WA_NUMBER = "60133635378";          // +6013-363 5378
+const WA_DISPLAY = "+60 13-363 5378";
+
+/* ---------- Kandungan topik (Entity: @topik) ---------- */
+const TOPICS = {
+  ismiyyah:{
+    name:"Jumlah Ismiyyah", ar:"الجُمْلَةُ الاسْمِيَّةُ",
+    keys:["jumlah ismiyyah","ismiyyah","ismiyah","ismiah","mubtada","khabar","الجملة الاسمية","جملة اسمية","اسمية"],
+    explain:"Jumlah ismiyyah ialah ayat yang dimulakan dengan isim (kata nama).\nIa ada dua bahagian: mubtada' (subjek) dan khabar (predikat).\n\nContoh: اَلْبَيْتُ كَبِيْرٌ (Rumah itu besar).\n\nCuba teka: dalam ayat ini, yang mana mubtada'?",
+    steps:[
+      "Langkah 1: Lihat perkataan pertama. Jika ia isim, ayat itu jumlah ismiyyah.\nContoh: اَلطَّالِبُ مُجْتَهِدٌ",
+      "Langkah 2: Perkataan pertama ialah mubtada': اَلطَّالِبُ (pelajar itu). Biasanya ia ada اَلْ (makrifah).",
+      "Langkah 3: Perkataan yang menerangkannya ialah khabar: مُجْتَهِدٌ (rajin). Biasanya ia bertanwin (nakirah).",
+      "Langkah 4: Kedua-duanya marfu' (baris depan/dammah): اَلطَّالِبُ dan مُجْتَهِدٌ.",
+      "Langkah 5: Khabar ikut jantina mubtada'.\nاَلطَّالِبُ مُجْتَهِدٌ → اَلطَّالِبَةُ مُجْتَهِدَةٌ"
+    ],
+    quiz:[
+      {q:"Dalam ayat اَلْقَلَمُ جَدِيْدٌ, yang mana mubtada'?", o:["اَلْقَلَمُ","جَدِيْدٌ"], a:0, hint:"Mubtada' ialah perkataan pertama yang dibincangkan."},
+      {q:"Apakah baris akhir mubtada' dan khabar?", o:["Dammah (marfu')","Fathah (mansub)","Kasrah (majrur)"], a:0, hint:"Lihat semula: اَلْبَيْتُ كَبِيْرٌ"},
+      {q:"Pilih khabar yang betul: اَلْبِنْتُ ___", o:["جَمِيْلٌ","جَمِيْلَةٌ"], a:1, hint:"اَلْبِنْتُ ialah perempuan, jadi khabar juga perlu muannath."}
+    ]
+  },
+  madhi:{
+    name:"Fi'il Madhi", ar:"الفِعْلُ المَاضِي",
+    keys:["fiil madhi","fiil madi","fiel madhi","madhi","madi","kata kerja lampau","kata kerja masa lampau","الفعل الماضي","ماضي","الماضي"],
+    explain:"Fi'il madhi ialah kata kerja masa lampau (perbuatan yang telah berlaku).\n\nContoh: كَتَبَ (dia lelaki telah menulis).\nAkhirannya berubah mengikut pelaku (dhamir).\n\nCuba teka: apa maksud ذَهَبَ?",
+    steps:[
+      "Langkah 1: Bentuk asas untuk هُوَ (dia lelaki): كَتَبَ",
+      "Langkah 2: Untuk هِيَ (dia perempuan), tambah تْ: كَتَبَتْ",
+      "Langkah 3: Untuk أَنَا (saya), tambah تُ: كَتَبْتُ",
+      "Langkah 4: Untuk أَنْتَ (kamu lelaki): كَتَبْتَ\nUntuk أَنْتِ (kamu perempuan): كَتَبْتِ",
+      "Langkah 5: Untuk نَحْنُ (kami/kita), tambah نَا: كَتَبْنَا"
+    ],
+    quiz:[
+      {q:"\"Saya telah pergi\" ialah…", o:["ذَهَبَ","ذَهَبْتُ","ذَهَبَتْ"], a:1, hint:"Akhiran untuk أَنَا ialah تُ."},
+      {q:"كَتَبَتْ bermaksud…", o:["Dia (lelaki) telah menulis","Dia (perempuan) telah menulis","Kami telah menulis"], a:1, hint:"Akhiran تْ menunjukkan هِيَ."},
+      {q:"Akhiran untuk نَحْنُ ialah…", o:["تُ","نَا","تْ"], a:1, hint:"Ingat: كَتَبْ + ... = كَتَبْنَا"}
+    ]
+  },
+  jar:{
+    name:"Huruf Jar", ar:"حُرُوفُ الجَرِّ",
+    keys:["huruf jar","harf jar","jar","kata sendi","حروف الجر","حرف الجر","الجر"],
+    explain:"Huruf jar ialah kata sendi seperti فِي (di dalam), إِلَى (ke), مِنْ (dari) dan عَلَى (di atas).\nIsim selepasnya menjadi majrur (baris bawah).\n\nContoh: فِي الْبَيْتِ (di dalam rumah).\n\nCuba teka: kenapa الْبَيْتِ berbaris bawah?",
+    steps:[
+      "Langkah 1: Kenal pasti huruf jar: فِي، إِلَى، مِنْ، عَلَى، عَنْ، بِـ، لِـ",
+      "Langkah 2: Lihat isim selepasnya. Contoh: الْمَدْرَسَةُ",
+      "Langkah 3: Tukar baris akhir isim itu kepada kasrah:\nإِلَى الْمَدْرَسَةِ (ke sekolah)",
+      "Langkah 4: Jika isim bertanwin, guna tanwin kasrah:\nفِي بَيْتٍ (di dalam sebuah rumah)"
+    ],
+    quiz:[
+      {q:"Pilih yang betul: ذَهَبْتُ إِلَى ___", o:["الْمَسْجِدُ","الْمَسْجِدَ","الْمَسْجِدِ"], a:2, hint:"Selepas huruf jar, isim menjadi majrur."},
+      {q:"عَلَى bermaksud…", o:["Di atas","Dari","Ke"], a:0, hint:"Contoh: الْكِتَابُ عَلَى الْمَكْتَبِ"},
+      {q:"Isim selepas huruf jar dinamakan…", o:["Marfu'","Majrur","Mansub"], a:1, hint:"Nama ini sama akar dengan perkataan 'jar'."}
+    ]
+  },
+  keluarga:{
+    name:"Mufradat Keluarga", ar:"الأُسْرَةُ",
+    keys:["keluarga","family","الاسرة","اسرة","usrah"],
+    explain:"Mufradat keluarga:\nأَبٌ (ayah) · أُمٌّ (ibu)\nأَخٌ (saudara lelaki) · أُخْتٌ (saudara perempuan)\nجَدٌّ (datuk) · جَدَّةٌ (nenek)\n\nTambah ـِي untuk 'saya': أَبِي (ayah saya).\n\nCuba: bagaimana sebut 'ibu saya'?",
+    steps:[
+      "Langkah 1: Hafal perkataan asas: أَبٌ (ayah), أُمٌّ (ibu)",
+      "Langkah 2: Tambah: أَخٌ (saudara lelaki), أُخْتٌ (saudara perempuan)",
+      "Langkah 3: Tambah: جَدٌّ (datuk), جَدَّةٌ (nenek)",
+      "Langkah 4: Untuk 'saya punya', tambah ـِي:\nأُمِّي (ibu saya), أَخِي (saudara lelaki saya)",
+      "Langkah 5: Bina ayat:\nهٰذَا أَبِي (Ini ayah saya)\nهٰذِهِ أُمِّي (Ini ibu saya)"
+    ],
+    quiz:[
+      {q:"أُخْتٌ bermaksud…", o:["Saudara lelaki","Saudara perempuan","Nenek"], a:1, hint:"Bandingkan dengan أَخٌ yang bermaksud saudara lelaki."},
+      {q:"\"Ibu saya\" dalam bahasa Arab…", o:["أُمِّي","أُمٌّ","أَبِي"], a:0, hint:"Tambah ـِي pada أُمٌّ."},
+      {q:"Pilih yang betul: ___ أَبِي", o:["هٰذَا","هٰذِهِ"], a:0, hint:"أَبٌ ialah lelaki (muzakkar)."}
+    ]
+  },
+  sekolah:{
+    name:"Mufradat Sekolah", ar:"المَدْرَسَةُ",
+    keys:["sekolah","school","المدرسة","مدرسة"],
+    explain:"Mufradat sekolah:\nمَدْرَسَةٌ (sekolah) · فَصْلٌ (kelas)\nمُعَلِّمٌ (guru) · طَالِبٌ (pelajar)\nكِتَابٌ (buku) · قَلَمٌ (pen) · مَكْتَبٌ (meja)\n\nCuba: bagaimana sebut 'Ini sebuah buku'?",
+    steps:[
+      "Langkah 1: Tempat: مَدْرَسَةٌ (sekolah), فَصْلٌ (kelas), مَكْتَبَةٌ (perpustakaan)",
+      "Langkah 2: Orang: مُعَلِّمٌ (guru lelaki), مُعَلِّمَةٌ (guru perempuan), طَالِبٌ (pelajar)",
+      "Langkah 3: Barang: كِتَابٌ (buku), قَلَمٌ (pen), مَكْتَبٌ (meja)",
+      "Langkah 4: Bina ayat: هٰذَا كِتَابٌ (Ini sebuah buku)"
+    ],
+    quiz:[
+      {q:"مُعَلِّمَةٌ bermaksud…", o:["Guru perempuan","Pelajar","Perpustakaan"], a:0, hint:"ـَةٌ di hujung biasanya menunjukkan perempuan."},
+      {q:"\"Pen\" dalam bahasa Arab…", o:["كِتَابٌ","قَلَمٌ","مَكْتَبٌ"], a:1, hint:"Ia benda yang digunakan untuk menulis."},
+      {q:"مَكْتَبَةٌ bermaksud…", o:["Meja","Perpustakaan","Kelas"], a:1, hint:"Akarnya ك ت ب (menulis/buku)."}
+    ]
+  }
+};
+
+/* ---------- Kamus ringkas (Entity: @perkataan) ---------- */
+const DICT = [
+  ["أَبٌ","ayah",["ayah","bapa"]],["أُمٌّ","ibu",["ibu","emak"]],["أَخٌ","saudara lelaki",["abang","adik lelaki","saudara lelaki"]],
+  ["أُخْتٌ","saudara perempuan",["kakak","adik perempuan","saudara perempuan"]],["جَدٌّ","datuk",["datuk"]],["جَدَّةٌ","nenek",["nenek"]],
+  ["مَدْرَسَةٌ","sekolah",["sekolah"]],["فَصْلٌ","kelas",["kelas"]],["مُعَلِّمٌ","guru (lelaki)",["guru","cikgu"]],["مُعَلِّمَةٌ","guru (perempuan)",["guru perempuan","cikgu perempuan"]],
+  ["طَالِبٌ","pelajar",["pelajar","murid"]],["كِتَابٌ","buku",["buku"]],["قَلَمٌ","pen",["pen","pena"]],["مَكْتَبٌ","meja",["meja"]],
+  ["مَكْتَبَةٌ","perpustakaan",["perpustakaan"]],["بَيْتٌ","rumah",["rumah"]],["كَبِيْرٌ","besar",["besar"]],["صَغِيْرٌ","kecil",["kecil"]],
+  ["جَمِيْلٌ","cantik",["cantik","indah"]],["مُجْتَهِدٌ","rajin",["rajin"]],["مَسْجِدٌ","masjid",["masjid"]],["كَتَبَ","dia (lelaki) telah menulis",["menulis","tulis"]],
+  ["ذَهَبَ","dia (lelaki) telah pergi",["pergi"]],["قَرَأَ","dia (lelaki) telah membaca",["membaca","baca"]]
+];
+
+/* ---------- Kata kunci intent ---------- */
+const K = {
+  tugasan:["karangan","tugasan","assignment","kerja rumah","kerja sekolah","homework","siapkan","jawapan peperiksaan","jawapan exam","peperiksaan","exam","final"],
+  fatwa:["hukum","fatwa","halal","haram","berdosa","dosa"],
+  emosi:["sedih","stres","stress","tertekan","risau","putus asa","masalah peribadi","masalah keluarga","emosi","menangis","murung","kecewa"],
+  manusia:["pensyarah","manusia","whatsapp","hubungi","cakap dengan orang"],
+  salam:["assalamualaikum","salam","hai","hi","hello","helo","السلام عليكم"],
+  terimakasih:["terima kasih","thanks","thank you","tq","شكرا"],
+  latihan:["latihan","soalan latihan","bagi soalan","beri soalan","kuiz","quiz","uji","test","اختبرني","tanya saya"],
+  langkah:["langkah","step","pecahkan","tak faham","tidak faham","x faham","keliru","bagaimana","macam mana"],
+  terangkan:["terangkan","jelaskan","apa itu","apakah","explain","takrif","definisi","ajar","اشرح","belajar","nak tahu"],
+  terjemah:["maksud","makna","terjemah","bahasa arab","arab bagi","arab untuk","معنى"],
+  seterusnya:["seterusnya","next","lagi","teruskan","ok","okay","faham","baik","sambung"],
+  berhenti:["berhenti","stop","keluar","tamat","menu","batal"]
+};
+
+/* ---------- Normalisasi ---------- */
+function norm(s){
+  return (" "+s+" ").toLowerCase()
+    .replace(/[ً-ٰٟـ]/g,"")
+    .replace(/[أإآٱ]/g,"ا").replace(/ى/g,"ي")
+    .replace(/['’`‘]/g,"").replace(/[?!.,;:()"؟،]/g," ")
+    .replace(/\s+/g," ");
+}
+const has = (t, list) => list.some(k => t.includes(" "+norm(k).trim()+" ") || (norm(k).trim().includes(" ") && t.includes(norm(k).trim())));
+function findTopic(t){
+  for (const [id,tp] of Object.entries(TOPICS)) if (has(t,tp.keys)) return id;
+  return null;
+}
+function findWord(t){
+  for (const [ar,ms,keys] of DICT){
+    const a = norm(ar).trim().replace(/^ال/,"");
+    const words = t.trim().split(" ").map(w=>w.replace(/^ال/,""));
+    if (words.includes(a)) return {ar,ms,dir:"ar"};
+  }
+  for (const [ar,ms,keys] of DICT) if (has(t,keys)) return {ar,ms,dir:"ms"};
+  return null;
+}
+
+/* ---------- Keadaan perbualan ---------- */
+let S;
+function fresh(){ S = {pending:null, topic:null, step:-1, quiz:null, fails:0, lastQ:""}; }
+
+/* ---------- Paparan ---------- */
+const log = document.getElementById("log"), inp = document.getElementById("inp");
+function waLink(q){
+  const text = "Assalamualaikum Dr. Saya pelajar yang menggunakan Ana Arabiy." + (q ? " Soalan saya: " + q : "");
+  return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text);
+}
+document.getElementById("waTop").href = waLink("");
+function scroll(){ log.scrollTop = log.scrollHeight; }
+function say(text){
+  const d = document.createElement("div"); d.className = "msg bot";
+  const w = document.createElement("span"); w.className="who"; w.textContent="Bot";
+  const t = document.createElement("span"); t.textContent = text;
+  d.append(w,t); log.append(d); scroll();
+}
+function me(text){
+  const d = document.createElement("div"); d.className = "msg me";
+  const w = document.createElement("span"); w.className="who"; w.textContent="Pelajar";
+  const t = document.createElement("span"); t.textContent = text;
+  d.append(w,t); log.append(d); scroll();
+}
+function quick(opts){
+  log.querySelectorAll(".quick").forEach(q=>q.remove());
+  if (!opts || !opts.length) return;
+  const box = document.createElement("div"); box.className="quick";
+  for (const o of opts){
+    const b = document.createElement("button"); b.type="button"; b.className="chip"; b.textContent=o;
+    b.onclick = () => handle(o);
+    box.append(b);
+  }
+  log.append(box); scroll();
+}
+function handoff(reason){
+  const d = document.createElement("div"); d.className="handoff";
+  const s = document.createElement("strong"); s.textContent = "Hubungi pensyarah melalui WhatsApp";
+  const p = document.createElement("span"); p.textContent = reason;
+  const n = document.createElement("span"); n.className="num"; n.textContent = WA_DISPLAY;
+  const a = document.createElement("a"); a.href = waLink(S.lastQ); a.target="_blank"; a.rel="noopener"; a.textContent="Buka WhatsApp";
+  d.append(s,p,n,a); log.append(d); scroll();
+}
+const MENU = ["Terangkan jumlah ismiyyah","Pecahkan fi'il madhi langkah demi langkah","Latihan mufradat keluarga","Apa maksud مَدْرَسَةٌ?"];
+const ASK_TOPIC = "Baik, topik nahu atau tema mufradat apa yang awak perlukan bantuan?";
+const TOPIC_CHIPS = Object.values(TOPICS).map(t=>t.name);
+
+/* ---------- Tindakan ---------- */
+function doExplain(id){ S.topic=id; S.step=-1; say(TOPICS[id].explain); quick(["Pecahkan langkah demi langkah","Beri soalan latihan"]); }
+function doSteps(id){ S.topic=id; S.step=0; say(TOPICS[id].name+" ("+TOPICS[id].ar+")\n\n"+TOPICS[id].steps[0]); quick(["Seterusnya","Berhenti"]); }
+function nextStep(){
+  const tp = TOPICS[S.topic]; S.step++;
+  if (S.step < tp.steps.length){ say(tp.steps[S.step]); quick(["Seterusnya","Berhenti"]); }
+  else { S.step=-1; say("Syabas, semua langkah selesai! Sedia untuk uji kefahaman?"); quick(["Beri soalan latihan","Pilih topik lain"]); }
+}
+function doQuiz(id){ S.topic=id; S.step=-1; S.quiz={i:0, score:0, tries:0}; say("Kuiz "+TOPICS[id].name+": 3 soalan. Pilih jawapan anda."); askQ(); }
+function askQ(){ const q = TOPICS[S.topic].quiz[S.quiz.i]; say("Soalan "+(S.quiz.i+1)+": "+q.q); quick(q.o); }
+function answerQ(t, raw){
+  const q = TOPICS[S.topic].quiz[S.quiz.i];
+  let pick = q.o.findIndex(o => norm(o).trim() === t.trim());
+  const letter = {" a ":0," b ":1," c ":2," 1 ":0," 2 ":1," 3 ":2}[t]; if (pick<0 && letter!==undefined) pick = letter;
+  if (pick < 0) return false;
+  if (pick === q.a){ S.quiz.score += S.quiz.tries===0 ? 1 : 0; say(["Betul!","Tepat!","Syabas!"][S.quiz.i%3]+" Jawapannya "+q.o[q.a]+"."); }
+  else if (S.quiz.tries===0){ S.quiz.tries=1; say("Belum tepat. Petunjuk: "+q.hint+"\nCuba sekali lagi."); quick(q.o); return true; }
+  else { say("Jawapan yang betul ialah "+q.o[q.a]+". Tidak mengapa, kita teruskan."); }
+  S.quiz.i++; S.quiz.tries=0;
+  if (S.quiz.i < TOPICS[S.topic].quiz.length) askQ();
+  else { const n = TOPICS[S.topic].quiz.length; say("Kuiz tamat! Markah anda: "+S.quiz.score+"/"+n+"."+(S.quiz.score===n?" Hebat!":" Cuba ulang kaji langkah demi langkah.")); S.quiz=null; quick(["Pecahkan langkah demi langkah","Pilih topik lain"]); }
+  return true;
+}
+function run(intent, id){ S.pending=null; S.fails=0; ({terangkan:doExplain, langkah:doSteps, latihan:doQuiz})[intent](id); }
+function fallback(){
+  S.fails++;
+  if (S.fails < 2){ say("Maaf, saya kurang faham. Boleh awak beritahu topik bahasa Arab yang mana, atau cuba tulis soalan dengan cara lain?"); quick(TOPIC_CHIPS); }
+  else { say("Nampaknya saya belum dapat membantu soalan ini. Pensyarah boleh membantu awak dengan lebih baik."); handoff("Saya sudah cuba 2 kali tetapi masih belum faham soalan awak."); S.fails=0; quick(MENU); }
+}
+
+/* ---------- Pengendali utama ---------- */
+function handle(raw){
+  raw = raw.trim(); if (!raw) return;
+  me(raw); quick(null);
+  const t = norm(raw);
+
+  // Hubungkan ke manusia
+  if (has(t,K.tugasan)){ S.lastQ=raw; say("Maaf, saya tidak boleh menyiapkan karangan, tugasan atau jawapan peperiksaan untuk awak. Tetapi saya boleh bimbing konsepnya supaya awak boleh buat sendiri."); handoff("Untuk pertanyaan tentang tugasan atau peperiksaan, sila rujuk pensyarah."); quick(TOPIC_CHIPS); return; }
+  if (has(t,K.fatwa)){ S.lastQ=raw; say("Soalan hukum agama perlu dijawab oleh yang berautoriti. Saya hanya membantu dalam bahasa Arab."); handoff("Sila tanya pensyarah untuk soalan hukum agama."); quick(MENU); return; }
+  if (has(t,K.emosi)){ S.lastQ=""; say("Terima kasih kerana berkongsi. Apa yang awak rasa itu penting, dan awak tidak perlu hadapinya seorang diri. Bercakap dengan pensyarah, mentor atau kaunselor boleh membantu."); handoff("Pensyarah sedia mendengar dan membantu."); return; }
+  if (has(t,K.manusia)){ S.lastQ=""; say("Boleh! Ini cara menghubungi pensyarah."); handoff("Hantar soalan awak terus kepada pensyarah."); return; }
+
+  // Mod kuiz
+  if (S.quiz){
+    if (has(t,K.berhenti)){ S.quiz=null; say("Kuiz dihentikan. Apa yang awak mahu buat sekarang?"); quick(MENU); return; }
+    if (answerQ(t, raw)) return;
+    if (!(findTopic(t) || has(t,K.latihan) || has(t,K.langkah) || has(t,K.terangkan) || has(t,K.terjemah))){
+    say("Pilih salah satu jawapan, atau taip 'berhenti' untuk keluar dari kuiz."); quick(TOPICS[S.topic].quiz[S.quiz.i].o); return; }
+    S.quiz=null;
+  }
+  // Mod langkah
+  if (S.step >= 0){
+    if (has(t,K.berhenti)){ S.step=-1; say("Baik. Apa yang awak mahu buat sekarang?"); quick(MENU); return; }
+    const newAsk = findTopic(t) || has(t,K.latihan) || has(t,K.terangkan) || has(t,K.terjemah) || has(t,["pecahkan","langkah demi langkah"]);
+    if (!newAsk && has(t,K.seterusnya)){ nextStep(); return; }
+    if (newAsk) S.step=-1;
+  }
+
+  if (has(t,K.salam)){ S.fails=0; say("Wa'alaikumussalam! Saya Ana Arabiy. Saya boleh terangkan topik, pecahkan langkah demi langkah, atau beri soalan latihan."); quick(MENU); return; }
+  if (has(t,K.terimakasih)){ S.fails=0; say("Sama-sama! عَفْوًا. Teruskan belajar!"); quick(MENU); return; }
+  if (has(t,K.berhenti) || t.includes("topik lain")){ S.step=-1; say("Pilih topik:"); quick(TOPIC_CHIPS); return; }
+
+  // Terjemah (@perkataan)
+  const w = findWord(t);
+  if (w && (has(t,K.terjemah) || (w.dir==="ar" && t.trim().split(" ").length<=3))){
+    S.fails=0;
+    say(w.dir==="ar" ? w.ar+" bermaksud \""+w.ms+"\"." : "\""+w.ms+"\" dalam bahasa Arab ialah "+w.ar+".");
+    quick(["Terangkan mufradat sekolah","Latihan mufradat keluarga"]); return;
+  }
+
+  // Intent + entity
+  const id = findTopic(t) || (/\bmufradat\b/.test(t) ? null : null);
+  let intent = has(t,K.latihan) ? "latihan" : has(t,K.langkah) ? "langkah" : has(t,K.terangkan) ? "terangkan" : null;
+  if (!intent && S.topic && has(t,["pecahkan langkah demi langkah"])) intent="langkah";
+
+  if (intent && id){ run(intent,id); return; }
+  if (intent && !id){
+    if (S.topic && /langkah|soalan latihan|beri soalan/.test(t) && t.trim().split(" ").length<=5){ run(intent,S.topic); return; }
+    S.pending = intent; S.fails=0; say(ASK_TOPIC); quick(TOPIC_CHIPS); return;
+  }
+  if (!intent && id){ run(S.pending || "terangkan", id); return; }
+
+  S.lastQ = raw;
+  fallback();
+}
+
+/* ---------- Mula ---------- */
+function start(){
+  fresh(); log.textContent="";
+  say("Assalamualaikum! Saya Ana Arabiy.\nSaya boleh terangkan topik, pecahkan langkah demi langkah, atau beri soalan latihan. Topik: jumlah ismiyyah, fi'il madhi, huruf jar, mufradat keluarga dan mufradat sekolah.");
+  quick(MENU);
+}
+document.getElementById("form").addEventListener("submit", e => { e.preventDefault(); const v=inp.value; inp.value=""; inp.style.height=""; handle(v); });
+inp.addEventListener("keydown", e => { if (e.key==="Enter" && !e.shiftKey){ e.preventDefault(); document.getElementById("form").requestSubmit(); } });
+inp.addEventListener("input", () => { inp.style.height="auto"; inp.style.height=Math.min(inp.scrollHeight,120)+"px"; });
+document.getElementById("reset").onclick = start;
+start();
+</script>
+</body>
+</html>
